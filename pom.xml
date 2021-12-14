@@ -8,12 +8,11 @@
     <artifactId>pxd</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+
     <modules>
-        <module>pxd-dubbo-producer</module>
-        <module>pxd-dubbo-consumer</module>
-        <module>pxd-dubbo-consumer-api</module>
         <module>pxd-common</module>
         <module>pxd-dubbo-modules</module>
+        <module>pxd-control-modules</module>
     </modules>
 
     <properties>

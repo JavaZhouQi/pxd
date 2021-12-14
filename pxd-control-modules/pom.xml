@@ -8,16 +8,18 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>pxd-dubbo-modules</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>pxd-dubbo-user</module>
-        <module>pxd-dubbo-common</module>
-    </modules>
+
+    <artifactId>pxd-control-modules</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+    <modules>
+        <module>pxd-control-common</module>
+        <module>pxd-control-admin</module>
+    </modules>
 
 </project>
