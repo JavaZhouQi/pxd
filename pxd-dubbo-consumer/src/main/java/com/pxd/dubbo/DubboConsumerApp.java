@@ -12,4 +12,5 @@ public class DubboConsumerApp {
         SpringApplication.run(DubboConsumerApp.class, args);
     }
 
+
 }
