@@ -17,3 +17,11 @@ spring:
   application:
     # 应用名称
     name: pxd-dubbo-user
+
+tencent:
+  im:
+    url: https://console.tim.qq.com/
+    sdkappid: 1400594902
+    administrator-user-id: pixiaodan
+    key: fb15378736bb97b2ac19f19b053da4a7dca795460876d876201aea6c5175292f
+    expire: 86400

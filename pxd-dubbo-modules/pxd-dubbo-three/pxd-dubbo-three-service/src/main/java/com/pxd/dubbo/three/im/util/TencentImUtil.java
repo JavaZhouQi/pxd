@@ -3,6 +3,7 @@ package com.pxd.dubbo.three.im.util;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
+import com.google.gson.Gson;
 import com.pxd.dubbo.three.im.config.TencentImConfig;
 import com.pxd.dubbo.three.im.enums.ImUriEnum;
 import com.tencentyun.TLSSigAPIv2;
@@ -23,11 +24,13 @@ public class TencentImUtil {
 
     private static TencentImConfig tencentImConfig;
     private static RedissonClient redissonClient;
+    private static Gson gson;
 
     @Autowired
-    public TencentImUtil(TencentImConfig tencentImConfig, RedissonClient redissonClient) {
+    public TencentImUtil(TencentImConfig tencentImConfig, RedissonClient redissonClient, Gson gson) {
         TencentImUtil.tencentImConfig = tencentImConfig;
         TencentImUtil.redissonClient = redissonClient;
+        TencentImUtil.gson = gson;
     }
 
     /**
@@ -65,10 +68,10 @@ public class TencentImUtil {
      */
     public static <T> T send(ImUriEnum imUriEnum, Object req, Class<T> tClass) {
         String httpsUrl = getHttpsUrl(imUriEnum.getValue());
-        String jsonReq = req != null ? JSONUtil.toJsonStr(req) : "{}";
+        String jsonReq = req != null ? gson.toJson(req) : "{}";
         log.info("[腾讯IM]请求URL:[{}],参数:{}", httpsUrl, jsonReq);
         String result = HttpUtil.post(httpsUrl, jsonReq);
         log.info("[腾讯IM]响应结果：[{}]", result);
-        return JSONUtil.toBean(result, tClass);
+        return gson.fromJson(result, tClass);
     }
 }
