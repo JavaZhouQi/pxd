@@ -10,6 +10,9 @@ dubbo:
   scan:
     # dubbo 服务扫描基准包
     base-packages: com.pxd.dubbo.user.service
+  consumer:
+    # 关闭所有服务的启动时检查 (没有提供者时报错)
+    check: false
 spring:
   application:
     # 应用名称

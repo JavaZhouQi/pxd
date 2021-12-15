@@ -7,6 +7,9 @@ dubbo:
     port: -1
   registry:
     address: nacos://127.0.0.1:8848
+  consumer:
+    # 关闭所有服务的启动时检查 (没有提供者时报错)
+    check: false
 server:
   port: 8080
   servlet:
