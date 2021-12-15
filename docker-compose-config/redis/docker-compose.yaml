@@ -1,0 +1,17 @@
+version: '3'
+services: 
+  redis:
+    image: redis:latest
+    container_name: "redis"
+    restart: always
+    ports:
+      - 6379:6379
+    volumes: 
+      - ./data:/data
+    networks:
+      - "redisnet"
+    # command: redis-server --appendonly yes
+
+networks: 
+  redisnet: 
+    driver: bridge
