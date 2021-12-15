@@ -23,6 +23,8 @@
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
         <spring-cloud-alibaba.version>2.2.2.RELEASE</spring-cloud-alibaba.version>
         <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
+        <swagger.version>2.9.2</swagger.version>
+        <swagger-xiaoymin.version>1.9.6</swagger-xiaoymin.version>
     </properties>
 
     <dependencyManagement>
@@ -49,6 +51,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--   SWAGGER START   -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${swagger-xiaoymin.version}</version>
+            </dependency>
+            <!--   SWAGGER END   -->
         </dependencies>
     </dependencyManagement>
 

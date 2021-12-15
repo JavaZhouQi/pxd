@@ -48,6 +48,21 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--   SWAGGER START   -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+        </dependency>
+        <!--   SWAGGER END   -->
+        <dependency>
+            <groupId>com.pxd</groupId>
+            <artifactId>pxd-dubbo-user-api</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>
