@@ -1,4 +1,4 @@
-package com.pxd.admin;
+package com.pxd;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;

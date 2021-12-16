@@ -1,4 +1,4 @@
-package com.pxd.admin.config;
+package com.pxd.control.common.config;
 
 import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +29,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.pxd.admin"))
+                .apis(RequestHandlerSelectors.basePackage("com.pxd.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(authToken());

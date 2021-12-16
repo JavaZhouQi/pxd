@@ -1,4 +1,4 @@
-package com.pxd.admin.controller;
+package com.pxd.controller;
 
 import com.pxd.dubbo.user.service.SysUserService;
 import io.swagger.annotations.Api;
