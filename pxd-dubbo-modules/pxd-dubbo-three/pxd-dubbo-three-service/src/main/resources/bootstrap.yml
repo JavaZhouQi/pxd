@@ -16,7 +16,7 @@ dubbo:
 spring:
   application:
     # 应用名称
-    name: pxd-dubbo-user
+    name: pxd-dubbo-three
 
 tencent:
   im:

@@ -44,7 +44,7 @@ public class TencentImUtil {
         TLSSigAPIv2 tlsSigApi = new TLSSigAPIv2(tencentImConfig.getSdkappid(), tencentImConfig.getKey());
         String sig = tlsSigApi.genUserSig(userId, tencentImConfig.getExpire());
         // 减10秒进行容错
-        bucket.set(sig, tencentImConfig.getExpire() - 10L, TimeUnit.MINUTES);
+        bucket.set(sig, tencentImConfig.getExpire() - 10L, TimeUnit.SECONDS);
         return sig;
     }
 
