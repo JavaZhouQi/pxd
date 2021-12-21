@@ -20,7 +20,12 @@
     <dependencies>
         <dependency>
             <groupId>com.pxd</groupId>
-            <artifactId>pxd-dubbo-common</artifactId>
+            <artifactId>pxd-dubbo-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pxd</groupId>
+            <artifactId>pxd-dubbo-common-mysql</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>

@@ -26,6 +26,7 @@
         <swagger.version>2.9.2</swagger.version>
         <swagger-xiaoymin.version>1.9.6</swagger-xiaoymin.version>
         <hutool.version>5.7.16</hutool.version>
+        <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -68,6 +69,11 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
