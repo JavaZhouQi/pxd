@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author PiXiaoDan
- * @since 2021-12-21
+ * @since 2021-12-22
  */
 @TableName("sys_user")
 public class SysUser implements Serializable {

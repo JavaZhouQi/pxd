@@ -1,12 +1,14 @@
 package com.pxd.dubbo.user.service.impl;
 
-import com.pxd.dubbo.user.entity.SysUser;
-import com.pxd.dubbo.user.mapper.SysUserMapper;
-import com.pxd.dubbo.user.service.ISysUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+import com.pxd.dubbo.user.service.SysUserService;
+import org.apache.dubbo.config.annotation.DubboService;
 
-@Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
+@DubboService
+public class SysUserServiceImpl implements SysUserService {
+
+    @Override
+    public String findUser(String username) {
+        return null;
+    }
 
 }
