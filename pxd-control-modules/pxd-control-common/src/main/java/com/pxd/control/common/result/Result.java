@@ -30,37 +30,36 @@ public class Result<T> implements Serializable {
     @ApiModelProperty(value = "响应数据")
     private T data;
 
-    public Result<T> ok(T data) {
-        this.setData(data);
-        return this;
+    public static <T> Result<T> ok() {
+        Result<T> result = new Result<>();
+        return result;
     }
 
-    public boolean success() {
-        return code == 0 ? true : false;
+    public static <T> Result<T> ok(T data) {
+        Result<T> result = new Result<>();
+        result.setData(data);
+        return result;
     }
 
-    public Result<T> fail() {
-        this.code = ErrorCodeEnum.FAIL.getCode();
-        this.msg = ErrorCodeEnum.FAIL.getDesc();
-        return this;
+    public static <T> Result<T> fail() {
+        Result<T> result = new Result<>();
+        result.setCode(ErrorCodeEnum.FAIL.getCode());
+        result.setMsg(ErrorCodeEnum.FAIL.getDesc());
+        return result;
     }
 
-    public Result<T> error(int code) {
-        this.code = code;
-        this.msg = "error";
-        return this;
+    public static <T> Result<T> error(int code) {
+        Result<T> result = new Result<>();
+        result.setCode(code);
+        result.setMsg("error");
+        return result;
     }
 
-    public Result<T> error(int code, String msg) {
-        this.code = code;
-        this.msg = msg;
-        return this;
-    }
-
-    public Result<T> error(String msg) {
-        this.code = ErrorCodeEnum.FAIL.getCode();
-        this.msg = msg;
-        return this;
+    public static <T> Result<T> error(int code, String msg) {
+        Result<T> result = new Result<>();
+        result.setCode(code);
+        result.setMsg(msg);
+        return result;
     }
 
     public int getCode() {
