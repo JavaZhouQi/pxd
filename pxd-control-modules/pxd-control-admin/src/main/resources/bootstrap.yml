@@ -22,3 +22,5 @@ dubbo:
   consumer:
     # 关闭所有服务的启动时检查 (没有提供者时报错)
     check: false
+  cloud:
+    subscribed-services: pxd-dubbo-user
