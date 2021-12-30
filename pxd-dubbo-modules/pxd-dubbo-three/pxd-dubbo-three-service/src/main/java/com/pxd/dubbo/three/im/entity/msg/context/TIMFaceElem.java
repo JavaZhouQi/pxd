@@ -1,6 +1,6 @@
 package com.pxd.dubbo.three.im.entity.msg.context;
 
-public class TIMFaceElem implements MsgContent{
+public class TIMFaceElem implements MsgContent {
 
     /*** 表情索引，用户自定义。 */
     private Integer Number;

@@ -11,20 +11,20 @@ spring:
             context-path: ${server.servlet.context-path}/actuator
         server-addr: 127.0.0.1:8848
         #nacos的命名空间ID，默认是public
-#        namespace: ${nacos.namespace}
-#      config:
-#        server-addr: ${nacos.host}
-#        namespace: ${nacos.namespace}
-#        group: DEFAULT_GROUP
-#        file-extension: yaml
-#        #指定共享配置，且支持动态刷新
-#        extension-configs:
-#          - data-id: common.yaml
-#            group: DEFAULT_GROUP
-#            refresh: false
-#          - data-id: redis.yaml
-#            group: DEFAULT_GROUP
-#            refresh: false
+    #        namespace: ${nacos.namespace}
+    #      config:
+    #        server-addr: ${nacos.host}
+    #        namespace: ${nacos.namespace}
+    #        group: DEFAULT_GROUP
+    #        file-extension: yaml
+    #        #指定共享配置，且支持动态刷新
+    #        extension-configs:
+    #          - data-id: common.yaml
+    #            group: DEFAULT_GROUP
+    #            refresh: false
+    #          - data-id: redis.yaml
+    #            group: DEFAULT_GROUP
+    #            refresh: false
     gateway:
       routes:
         - id: pxd-control-admin
@@ -36,7 +36,7 @@ pxd:
     routes:
       - name: 后台管理
         location: /admin
-  urls:  #无需认证的URL
+  urls: #无需认证的URL
     - /*/swagger-resources/**
     - /*/webjars/**
     - /*/v2/api-docs

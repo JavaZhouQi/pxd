@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
  * @author 皮蛋 javazhouqi@163.com
  */
 public class IpUtils {
-	private static Logger logger = LoggerFactory.getLogger(IpUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(IpUtils.class);
 
-	public static String getIpAddr(HttpServletRequest request) {
-    	String ip = null;
+    public static String getIpAddr(HttpServletRequest request) {
+        String ip = null;
         try {
             ip = request.getHeader("x-forwarded-for");
             if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
@@ -36,9 +36,9 @@ public class IpUtils {
                 ip = request.getRemoteAddr();
             }
         } catch (Exception e) {
-        	logger.error("IpUtils ERROR ", e);
+            logger.error("IpUtils ERROR ", e);
         }
-        
+
         return ip;
     }
 }

@@ -37,8 +37,9 @@ public class AccountImportReq {
 
     /**
      * 导入单个帐号
-     * @param userId 用户ID
-     * @param nick 用户名称
+     *
+     * @param userId  用户ID
+     * @param nick    用户名称
      * @param faceUrl 用户头像地址
      * @return 导入单个帐号对象
      */

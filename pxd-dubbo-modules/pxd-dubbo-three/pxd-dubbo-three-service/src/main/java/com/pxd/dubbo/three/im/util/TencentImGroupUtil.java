@@ -38,7 +38,7 @@ public class TencentImGroupUtil {
      */
     public static String createGroup(CreateGroupReq createGroupReq) {
         CreateGroupResp send = TencentImUtil.send(ImUriEnum.CREATE_GROUP, createGroupReq, CreateGroupResp.class);
-        if(ImResp.isOk(send)){
+        if (ImResp.isOk(send)) {
             return send.getGroupId();
         }
         throw new RuntimeException("腾讯IM创建群组异常");
@@ -47,7 +47,7 @@ public class TencentImGroupUtil {
     /**
      * 删除群成员
      */
-    public static boolean deleteGroupMember(DeleteGroupMemberReq deleteGroupMemberReq){
+    public static boolean deleteGroupMember(DeleteGroupMemberReq deleteGroupMemberReq) {
         ImResp send = TencentImUtil.send(ImUriEnum.DELETE_GROUP_MEMBER, deleteGroupMemberReq, ImResp.class);
         return ImResp.isOk(send);
     }

@@ -18,6 +18,7 @@ public class MultiaccountImportReq {
 
     /**
      * 导入多个帐号 初始化
+     *
      * @param userId 用户Id
      * @return 导入多个帐号对象
      */

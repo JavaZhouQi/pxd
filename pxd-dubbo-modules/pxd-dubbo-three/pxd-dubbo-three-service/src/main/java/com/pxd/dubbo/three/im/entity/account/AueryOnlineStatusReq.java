@@ -29,6 +29,7 @@ public class AueryOnlineStatusReq {
 
     /**
      * 查询帐号在线状态对象 初始化
+     *
      * @param userId 用户Id
      * @return 查询帐号在线状态对象
      */
@@ -44,8 +45,9 @@ public class AueryOnlineStatusReq {
 
     /**
      * 查询帐号在线状态对象 初始化
+     *
      * @param isNeedDetail 是否需要返回详细的登录平台信息。0表示不需要，1表示需要
-     * @param userId 用户id
+     * @param userId       用户id
      * @return 查询帐号在线状态对象
      */
     public static AueryOnlineStatusReq init(int isNeedDetail, String... userId) {

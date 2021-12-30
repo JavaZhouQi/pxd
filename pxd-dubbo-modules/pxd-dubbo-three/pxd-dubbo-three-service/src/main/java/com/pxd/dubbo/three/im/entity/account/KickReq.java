@@ -15,10 +15,11 @@ public class KickReq {
 
     /**
      * 失效帐号登录状态 初始化
+     *
      * @param userId
      * @return
      */
-    public static KickReq init(String userId){
+    public static KickReq init(String userId) {
         KickReq kickReq = new KickReq();
         kickReq.setIdentifier(userId);
         return kickReq;

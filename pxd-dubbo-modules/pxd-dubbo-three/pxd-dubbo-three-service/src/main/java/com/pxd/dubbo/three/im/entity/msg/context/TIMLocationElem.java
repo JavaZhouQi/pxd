@@ -1,6 +1,6 @@
 package com.pxd.dubbo.three.im.entity.msg.context;
 
-public class TIMLocationElem implements MsgContent{
+public class TIMLocationElem implements MsgContent {
 
     /*** 地理位置描述信息。*/
     private String Desc;

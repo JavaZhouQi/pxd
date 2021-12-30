@@ -22,14 +22,14 @@ public class LoginController {
 
     @ApiOperation(value = "获取验证码")
     @GetMapping("/verification")
-    public Result<VerificationVo> verification(){
+    public Result<VerificationVo> verification() {
         return loginService.verification();
     }
 
 
     @ApiOperation(value = "登录")
     @PostMapping("/login")
-    public Result<?> login(@RequestBody LoginVo loginVo){
+    public Result<?> login(@RequestBody LoginVo loginVo) {
         return loginService.login(loginVo);
     }
 

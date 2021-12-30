@@ -26,11 +26,12 @@ public class PageData<T> implements Serializable {
 
     /**
      * 分页
-     * @param list   列表数据
-     * @param total  总记录数
+     *
+     * @param list  列表数据
+     * @param total 总记录数
      */
     public PageData(List<T> list, long total) {
         this.list = list;
-        this.total = (int)total;
+        this.total = (int) total;
     }
 }

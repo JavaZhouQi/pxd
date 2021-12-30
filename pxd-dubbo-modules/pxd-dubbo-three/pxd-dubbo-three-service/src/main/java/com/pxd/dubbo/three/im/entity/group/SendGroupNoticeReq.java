@@ -40,10 +40,9 @@ public class SendGroupNoticeReq {
     }
 
     /**
-     *
      * @param groupId 群ID
      * @param content 系统通知的内容
-     * @param userId 接收者群成员列表，请填写接收者 UserID
+     * @param userId  接收者群成员列表，请填写接收者 UserID
      * @return
      */
     public static SendGroupNoticeReq init(String groupId, String content, String... userId) {

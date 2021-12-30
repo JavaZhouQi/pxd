@@ -96,9 +96,9 @@ public enum ImUriEnum {
     /**
      * 运营管理
      */
-    GETAPPINFO("拉取运营数据","v4/openconfigsvr/getappinfo"),
-    GET_HISTORY("下载消息记录","v4/open_msg_svc/get_history"),
-    GETIPLIST("获取服务器IP地址","v4/ConfigSvc/GetIPList");
+    GETAPPINFO("拉取运营数据", "v4/openconfigsvr/getappinfo"),
+    GET_HISTORY("下载消息记录", "v4/open_msg_svc/get_history"),
+    GETIPLIST("获取服务器IP地址", "v4/ConfigSvc/GetIPList");
 
     private final String explain;
     private final String value;

@@ -10,6 +10,7 @@ public class PasswordUtil {
 
     /**
      * 对密码进行hax
+     *
      * @param password
      * @return
      */
@@ -19,6 +20,7 @@ public class PasswordUtil {
 
     /**
      * 校验密码是否匹配
+     *
      * @param password
      * @param hexPassword
      * @return

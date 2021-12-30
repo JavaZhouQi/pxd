@@ -30,6 +30,7 @@ public class MsgBody {
 
     /**
      * 创建文本消息
+     *
      * @param text 消息内容
      * @return
      */

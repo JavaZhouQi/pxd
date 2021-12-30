@@ -21,7 +21,7 @@ public class TencentImMsgUtil {
      */
     public static AdminGetroammsgResp adminGetroammsg(AdminGetroammsgReq adminGetroammsgReq) {
         AdminGetroammsgResp send = TencentImUtil.send(ImUriEnum.SENDMSG, adminGetroammsgReq, AdminGetroammsgResp.class);
-        if(ImResp.isOk(send)){
+        if (ImResp.isOk(send)) {
             return send;
         }
         throw new RuntimeException("腾讯IM查询单聊消息异常");

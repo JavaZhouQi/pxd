@@ -41,7 +41,7 @@ public class GetAppidGroupListReq {
     /**
      *
      */
-    public static GetAppidGroupListReq init(GroupTypeEnum groupTypeEnum){
+    public static GetAppidGroupListReq init(GroupTypeEnum groupTypeEnum) {
         GetAppidGroupListReq getAppidGroupListReq = new GetAppidGroupListReq();
         getAppidGroupListReq.setGroupType(groupTypeEnum.toString());
         return getAppidGroupListReq;

@@ -14,7 +14,7 @@ public class GetAppidGroupListResp extends ImResp {
     private List<GroupIdDTO> GroupIdList;
 
     /*** 分页拉取的标志 */
-     private Long Next;
+    private Long Next;
 
     public Integer getTotalCount() {
         return TotalCount;

@@ -16,8 +16,8 @@ import java.util.List;
 @Slf4j
 public class ConvertUtils {
 
-    public static <T> T sourceToTarget(Object source, Class<T> target){
-        if(source == null){
+    public static <T> T sourceToTarget(Object source, Class<T> target) {
+        if (source == null) {
             return null;
         }
         T targetObject = null;
@@ -31,19 +31,19 @@ public class ConvertUtils {
         return targetObject;
     }
 
-    public static <T> List<T> sourceToTarget(Collection<?> sourceList, Class<T> target){
-        if(sourceList == null){
+    public static <T> List<T> sourceToTarget(Collection<?> sourceList, Class<T> target) {
+        if (sourceList == null) {
             return null;
         }
 
         List targetList = new ArrayList<>(sourceList.size());
         try {
-            for(Object source : sourceList){
+            for (Object source : sourceList) {
                 T targetObject = target.newInstance();
                 BeanUtils.copyProperties(source, targetObject);
                 targetList.add(targetObject);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("convert error ", e);
         }
 

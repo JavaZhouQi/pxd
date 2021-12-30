@@ -27,7 +27,7 @@ public class GetGroupInfoReq {
         ResponseFilter = responseFilter;
     }
 
-    public static GetGroupInfoReq init(Set<String> groupId){
+    public static GetGroupInfoReq init(Set<String> groupId) {
         GetGroupInfoReq getGroupInfoReq = new GetGroupInfoReq();
         getGroupInfoReq.setGroupIdList(groupId);
         return getGroupInfoReq;

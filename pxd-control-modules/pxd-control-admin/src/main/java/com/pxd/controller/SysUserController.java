@@ -20,13 +20,13 @@ public class SysUserController {
 
     @ApiOperation(value = "查询用户信息")
     @GetMapping
-    public Result<?> getUserInfo(){
+    public Result<?> getUserInfo() {
         return controlSysUserService.getUserInfo();
     }
 
     @ApiOperation(value = "添加用户")
     @PostMapping
-    public Result<?> add(@Valid @RequestBody SysUserVo sysUserVo){
+    public Result<?> add(@Valid @RequestBody SysUserVo sysUserVo) {
         return controlSysUserService.add(sysUserVo);
     }
 

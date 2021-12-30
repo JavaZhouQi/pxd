@@ -18,6 +18,7 @@ public class AccountDeleteReq {
 
     /**
      * 初始化im删除账号对象
+     *
      * @param userId
      * @return
      */

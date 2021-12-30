@@ -14,8 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ImTest {
 
     @Test
-    public void test(){
-        TencentImAccountUtil.accountImport(AccountImportReq.init("1","1","1"));
+    public void test() {
+        TencentImAccountUtil.accountImport(AccountImportReq.init("1", "1", "1"));
     }
 
 }
