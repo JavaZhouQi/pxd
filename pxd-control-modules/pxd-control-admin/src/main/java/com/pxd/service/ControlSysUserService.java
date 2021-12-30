@@ -1,6 +1,5 @@
 package com.pxd.service;
 
-import com.pxd.common.constant.RedisKeyConstant;
 import com.pxd.common.utils.ConvertUtils;
 import com.pxd.common.utils.PasswordUtil;
 import com.pxd.control.common.result.Result;
@@ -9,9 +8,7 @@ import com.pxd.dubbo.user.service.SysUserService;
 import com.pxd.vo.LoginUserVo;
 import com.pxd.vo.SysUserVo;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
-import org.redisson.client.RedisClient;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
