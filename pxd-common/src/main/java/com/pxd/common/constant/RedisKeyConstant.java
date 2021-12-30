@@ -9,5 +9,8 @@ public interface RedisKeyConstant {
      * 后台图片验证码
      */
     String ADMIN_VERIFICATION_IMAGE = "admin:verification:image:";
-
+    /**
+     * 用户登录信息
+     */
+    String LOGIN_USER_INFO = "user:login:user:info";
 }

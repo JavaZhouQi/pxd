@@ -1,5 +1,6 @@
 package com.pxd.dubbo.user.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.pxd.common.constant.Whether;
 import com.pxd.common.utils.ConvertUtils;
 import com.pxd.dubbo.user.dto.SysUserDto;
@@ -18,12 +19,6 @@ public class SysUserServiceImpl implements SysUserService {
     SysUserManager sysUserManager;
 
     @Override
-    public String findUser(String username) {
-
-        return null;
-    }
-
-    @Override
     public void add(SysUserDto sysUserDto) {
         SysUser sysUser = ConvertUtils.sourceToTarget(sysUserDto, SysUser.class);
         sysUser.setStatus(Whether.YES.getCode());
@@ -33,4 +28,14 @@ public class SysUserServiceImpl implements SysUserService {
         sysUserManager.save(sysUser);
     }
 
+    @Override
+    public SysUserDto findByUsername(String username) {
+        LambdaQueryWrapper<SysUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(SysUser::getUsername, username);
+        SysUser sysUser = sysUserManager.getOne(lambdaQueryWrapper);
+        if (sysUser == null) {
+            return null;
+        }
+        return ConvertUtils.sourceToTarget(sysUser, SysUserDto.class);
+    }
 }
