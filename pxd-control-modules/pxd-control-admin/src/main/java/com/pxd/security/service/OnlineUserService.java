@@ -1,44 +1,37 @@
-///**
-// * Copyright (C) 2018-2020
-// * All rights reserved, Designed By www.yixiang.co
-// * 注意：
-// * 本软件为www.yixiang.co开发研制
-// */
 //package com.pxd.security.service;
 //
+//import com.pxd.security.config.SecurityProperties;
+//import com.pxd.security.security.vo.JwtUser;
+//import com.pxd.security.security.vo.OnlineUser;
 //import lombok.extern.slf4j.Slf4j;
+//import org.apache.commons.lang3.StringUtils;
+//import org.redisson.api.RedissonClient;
 //import org.springframework.stereotype.Service;
 //
+//import javax.annotation.Resource;
 //import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
 //import java.util.*;
 //
-///**
-// * @author hupeng
-// * @Date 2019年10月26日21:56:27
-// */
 //@Service
 //@Slf4j
 //public class OnlineUserService {
 //
-//    private final SecurityProperties properties;
-//    private RedisUtils redisUtils;
+//    @Resource
+//    SecurityProperties properties;
+//    @Resource
+//    RedissonClient redissonClient;
 //
-//    public OnlineUserService(SecurityProperties properties, RedisUtils redisUtils) {
-//        this.properties = properties;
-//        this.redisUtils = redisUtils;
-//    }
 //
 //    /**
 //     * 保存在线用户信息
+//     *
 //     * @param jwtUser /
-//     * @param token /
+//     * @param token   /
 //     * @param request /
 //     */
 //    public void save(JwtUser jwtUser, String token, HttpServletRequest request) {
 //        String job = jwtUser.getDept() + "/" + jwtUser.getJob();
-//        String ip = StringUtils.getIp(request);
+//        String ip = Http.getIp(request);
 //        String browser = StringUtils.getBrowser(request);
 //        String address = StringUtils.getCityInfo(ip);
 //        OnlineUser onlineUser = null;
@@ -52,7 +45,8 @@
 //
 //    /**
 //     * 查询全部数据
-//     * @param filter /
+//     *
+//     * @param filter   /
 //     * @param pageable /
 //     * @return /
 //     */
@@ -66,6 +60,7 @@
 //
 //    /**
 //     * 查询全部数据，不分页
+//     *
 //     * @param filter /
 //     * @return /
 //     */
@@ -76,8 +71,6 @@
 //        } else {
 //            keys = redisUtils.scan(properties.getOnlineKey() + "*");
 //        }
-//
-//
 //        Collections.reverse(keys);
 //        List<OnlineUser> onlineUsers = new ArrayList<>();
 //        for (String key : keys) {
@@ -96,29 +89,18 @@
 //
 //    /**
 //     * 踢出用户
+//     *
 //     * @param key /
 //     * @throws Exception /
 //     */
 //    public void kickOut(String key) throws Exception {
-//        key = properties.getOnlineKey() + EncryptUtils.desDecrypt(key);
+//        key = properties.getOnlineKey () + EncryptUtils.desDecrypt(key);
 //        redisUtils.del(key);
-//
-//    }
-//
-//    /**
-//     * 踢出移动端用户
-//     * @param key /
-//     * @throws Exception /
-//     */
-//    public void kickOutT(String key) throws Exception {
-//
-//        String keyt = "m-online-token" + EncryptUtils.desDecrypt(key);
-//        redisUtils.del(keyt);
-//
 //    }
 //
 //    /**
 //     * 退出登录
+//     *
 //     * @param token /
 //     */
 //    public void logout(String token) {
@@ -126,38 +108,40 @@
 //        redisUtils.del(key);
 //    }
 //
-//    /**
-//     * 导出
-//     * @param all /
-//     * @param response /
-//     * @throws IOException /
-//     */
-//    public void download(List<OnlineUser> all, HttpServletResponse response) throws IOException {
-//        List<Map<String, Object>> list = new ArrayList<>();
-//        for (OnlineUser user : all) {
-//            Map<String, Object> map = new LinkedHashMap<>();
-//            map.put("用户名", user.getUserName());
-//            map.put("用户昵称", user.getNickName());
-//            map.put("登录IP", user.getIp());
-//            map.put("登录地点", user.getAddress());
-//            map.put("浏览器", user.getBrowser());
-//            map.put("登录日期", user.getLoginTime());
-//            list.add(map);
-//        }
-//        FileUtil.downloadExcel(list, response);
-//    }
+////    /**
+////     * 导出
+////     * @param all /
+////     * @param response /
+////     * @throws IOException /
+////     */
+////    public void download(List<OnlineUser> all, HttpServletResponse response) throws IOException {
+////        List<Map<String, Object>> list = new ArrayList<>();
+////        for (OnlineUser user : all) {
+////            Map<String, Object> map = new LinkedHashMap<>();
+////            map.put("用户名", user.getUserName());
+////            map.put("用户昵称", user.getNickName());
+////            map.put("登录IP", user.getIp());
+////            map.put("登录地点", user.getAddress());
+////            map.put("浏览器", user.getBrowser());
+////            map.put("登录日期", user.getLoginTime());
+////            list.add(map);
+////        }
+////        FileUtil.downloadExcel(list, response);
+////    }
 //
 //    /**
 //     * 查询用户
+//     *
 //     * @param key /
 //     * @return /
 //     */
 //    public OnlineUser getOne(String key) {
-//        return (OnlineUser) redisUtils.get(key);
+//        return (OnlineUser) redissonClient.get(key);
 //    }
 //
 //    /**
 //     * 检测用户是否在之前已经登录，已经登录踢下线
+//     *
 //     * @param userName 用户名
 //     */
 //    public void checkLoginOnUser(String userName, String igoreToken) {
@@ -168,7 +152,7 @@
 //        for (OnlineUser onlineUser : onlineUsers) {
 //            if (onlineUser.getUserName().equals(userName)) {
 //                try {
-//                    String token = EncryptUtils.desDecrypt(onlineUser.getKey());
+//                    String token = onlineUser.getKey();
 //                    if (StringUtils.isNotBlank(igoreToken) && !igoreToken.equals(token)) {
 //                        this.kickOut(onlineUser.getKey());
 //                    } else if (StringUtils.isBlank(igoreToken)) {
