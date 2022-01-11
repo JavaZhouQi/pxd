@@ -14,6 +14,7 @@
         <module>pxd-dubbo-modules</module>
         <module>pxd-control-modules</module>
         <module>pxd-gateway</module>
+        <module>pxd-test</module>
     </modules>
 
     <properties>
