@@ -21,9 +21,6 @@
 //import java.io.IOException;
 //import java.util.Set;
 //
-///**
-// * @author hupeng
-// */
 //@RestController
 //@RequestMapping("/auth/online")
 //@Api(tags = "系统：在线用户管理")

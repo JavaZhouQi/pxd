@@ -1,8 +1,4 @@
-package com.pxd.security.security; /**
- * Copyright (C) 2018-2021
- * All rights reserved, Designed By www.yixiang.co
-
- *//*
+package com.pxd.security.security; /*
 
 package co.yixiang.modules.security.security;
 

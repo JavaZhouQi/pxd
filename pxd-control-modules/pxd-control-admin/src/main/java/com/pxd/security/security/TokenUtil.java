@@ -21,11 +21,6 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Token 工具类
- *
- * @author lioncity
- */
 @Slf4j
 @Component
 public class TokenUtil {
