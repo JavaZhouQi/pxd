@@ -31,6 +31,8 @@ spring:
           uri: lb://pxd-control-admin
           predicates:
             - Path=/admin/**
+          filters:
+            - StripPrefix=1
 pxd:
   swagger: #聚合文档配置
     routes:
