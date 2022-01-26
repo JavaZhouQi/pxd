@@ -27,8 +27,8 @@ spring:
     #            refresh: false
     gateway:
       routes:
-        - id: pxd-control-admin
-          uri: lb://pxd-control-admin
+        - id: pxd-admin
+          uri: lb://pxd-admin
           predicates:
             - Path=/admin/**
           filters:
