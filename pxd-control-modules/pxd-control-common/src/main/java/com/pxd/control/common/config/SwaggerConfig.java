@@ -46,7 +46,7 @@ public class SwaggerConfig {
     //全站统一参数配置，一般是token。
     private List<ApiKey> authToken() {
         List<ApiKey> arrayList = new ArrayList();
-        arrayList.add(new ApiKey("token", "token", "header"));
+        arrayList.add(new ApiKey("token", "Authorization", "header"));
         return arrayList;
     }
 }

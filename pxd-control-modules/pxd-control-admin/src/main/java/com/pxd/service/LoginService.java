@@ -2,21 +2,24 @@ package com.pxd.service;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.CircleCaptcha;
-import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.IdUtil;
 import com.pxd.common.constant.RedisKeyConstant;
-import com.pxd.common.utils.PasswordUtil;
 import com.pxd.control.common.enums.ErrorCodeEnum;
 import com.pxd.control.common.result.Result;
-import com.pxd.dubbo.user.dto.SysUserDto;
 import com.pxd.dubbo.user.service.SysUserService;
+import com.pxd.security.token.TokenUser;
+import com.pxd.security.token.TokenUtil;
 import com.pxd.vo.LoginUserVo;
 import com.pxd.vo.LoginVo;
 import com.pxd.vo.VerificationVo;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.redisson.api.RBucket;
-import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,31 +31,29 @@ public class LoginService {
 
     @Resource
     RedissonClient redissonClient;
-    @DubboReference
-    SysUserService sysUserService;
+    @Resource
+    AuthenticationManagerBuilder authenticationManagerBuilder;
 
     public Result<?> login(LoginVo loginVo) {
         RBucket<String> bucket = redissonClient.getBucket(RedisKeyConstant.ADMIN_VERIFICATION_IMAGE + loginVo.getCodeId());
         if (!bucket.isExists()) {
             return Result.result(ErrorCodeEnum.VERIFICATION_EXPIRED);
         }
-        if (!Objects.equals(loginVo.getCode(), bucket.get())) {
+        String code = bucket.get();
+        bucket.delete();
+        if (!Objects.equals(loginVo.getCode(), code)) {
             return Result.result(ErrorCodeEnum.VERIFICATION_FAIL);
         }
-        SysUserDto sysUserDto = sysUserService.findByUsername(loginVo.getUsername());
-        if (sysUserDto == null) {
-            return Result.result(ErrorCodeEnum.USER_USERNAME_NOT_NULL);
-        }
-        if (!PasswordUtil.verify(loginVo.getPassword(), sysUserDto.getPassword())) {
-            return Result.result(ErrorCodeEnum.USER_PASSWORD_FAIL);
-        }
-        String simpleUUID = IdUtil.simpleUUID();
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginVo.getUsername(), loginVo.getPassword());
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        // 生成令牌
+        final TokenUser tokenUser = (TokenUser) authentication.getPrincipal();
+        String token = TokenUtil.generateToken(tokenUser);
         LoginUserVo loginUserVo = new LoginUserVo();
-        loginUserVo.setToken(simpleUUID);
-        loginUserVo.setUserId(sysUserDto.getId());
-        RMap<String, LoginUserVo> loginUserInfoMap = redissonClient.getMap(RedisKeyConstant.LOGIN_USER_INFO);
-        loginUserInfoMap.put(simpleUUID, loginUserVo);
-        return Result.ok();
+        loginUserVo.setToken(token);
+        loginUserVo.setUserId(tokenUser.getId());
+        return Result.ok(loginUserVo);
     }
 
     public Result<VerificationVo> verification() {

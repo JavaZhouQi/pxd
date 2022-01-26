@@ -1,6 +1,7 @@
 package com.pxd.controller;
 
 import com.pxd.control.common.result.Result;
+import com.pxd.security.annotation.AnonymousAccess;
 import com.pxd.service.LoginService;
 import com.pxd.vo.LoginVo;
 import com.pxd.vo.VerificationVo;
@@ -20,13 +21,14 @@ public class LoginController {
     @Resource
     LoginService loginService;
 
+    @AnonymousAccess
     @ApiOperation(value = "获取验证码")
     @GetMapping("/verification")
     public Result<VerificationVo> verification() {
         return loginService.verification();
     }
 
-
+    @AnonymousAccess
     @ApiOperation(value = "登录")
     @PostMapping("/login")
     public Result<?> login(@RequestBody LoginVo loginVo) {

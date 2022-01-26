@@ -11,6 +11,8 @@ public enum ErrorCodeEnum {
     FAIL(1, "失败"),
     VERIFICATION_EXPIRED(2, "验证码过期，请重新获取验证码"),
     VERIFICATION_FAIL(3, "验证码错误"),
+    NOT_ACCESS_PERMISSION(4, "没有访问权限"),
+
 
     /*** 用户相关错误信息 */
     USER_USERNAME_NOT_NULL(1001, "账号不存在"),
