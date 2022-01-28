@@ -15,3 +15,4 @@ public class LoginUserVo implements Serializable {
     private Long userId;
 
 }
+
