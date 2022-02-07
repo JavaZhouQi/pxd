@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class TokenUtil {
+
     private static final String REDIS_TOKEN_KEY = "token:";
     private static final String REDIS_USER_KEY = "user:";
 
