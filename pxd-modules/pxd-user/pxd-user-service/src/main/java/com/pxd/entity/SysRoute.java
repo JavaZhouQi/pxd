@@ -9,17 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * <p>
- * 路由信息
- * </p>
- *
- * @author PiXiaoDan
- * @since 2022-02-09
- */
 @Data
-@TableName("sys_route")
-@ApiModel(value = "SysRoute对象", description = "路由信息")
 public class SysRoute implements Serializable {
 
     private static final long serialVersionUID = 1L;
