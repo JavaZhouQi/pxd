@@ -1,6 +1,6 @@
 package com.pxd.module.im.entity.group;
 
-import com.pxd.dubbo.three.im.entity.msg.MsgBody;
+import com.pxd.module.im.entity.msg.MsgBody;
 
 import java.util.List;
 

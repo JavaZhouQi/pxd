@@ -1,9 +1,6 @@
 package com.pxd.module.im.entity.account;
 
-import com.pxd.dubbo.three.im.entity.account.ErrorList;
-
 import java.util.List;
-
 
 public class QueryResult {
 
@@ -23,7 +20,7 @@ public class QueryResult {
     private List<Detail> Detail;
 
     /*** 状态查询失败的帐号列表，在此列表中的目标帐号，状态查询失败或目标帐号不存在。若状态全部查询成功，则 ErrorList 为空 */
-    private List<com.pxd.dubbo.three.im.entity.account.ErrorList> ErrorList;
+    private List<ErrorList> ErrorList;
 
     public String getTo_Account() {
         return To_Account;

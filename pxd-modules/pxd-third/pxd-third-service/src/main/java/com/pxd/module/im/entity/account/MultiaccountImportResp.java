@@ -1,6 +1,6 @@
 package com.pxd.module.im.entity.account;
 
-import com.pxd.dubbo.three.im.entity.ImResp;
+import com.pxd.module.im.entity.ImResp;
 
 import java.util.Set;
 

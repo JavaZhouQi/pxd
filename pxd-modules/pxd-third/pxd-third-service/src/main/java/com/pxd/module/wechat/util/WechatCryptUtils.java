@@ -1,6 +1,6 @@
 package com.pxd.module.wechat.util;
 
-import com.xyunchain.third.module.wechat.exception.WechatException;
+import com.pxd.module.wechat.exception.WechatException;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;

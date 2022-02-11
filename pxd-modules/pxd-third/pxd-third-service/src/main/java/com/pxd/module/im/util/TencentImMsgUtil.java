@@ -1,10 +1,10 @@
 package com.pxd.module.im.util;
 
-import com.pxd.dubbo.three.im.entity.ImResp;
-import com.pxd.dubbo.three.im.entity.msg.AdminGetroammsgReq;
-import com.pxd.dubbo.three.im.entity.msg.AdminGetroammsgResp;
-import com.pxd.dubbo.three.im.entity.msg.SendMsgReq;
-import com.pxd.dubbo.three.im.enums.ImUriEnum;
+import com.pxd.module.im.entity.ImResp;
+import com.pxd.module.im.entity.msg.AdminGetroammsgReq;
+import com.pxd.module.im.entity.msg.AdminGetroammsgResp;
+import com.pxd.module.im.entity.msg.SendMsgReq;
+import com.pxd.module.im.enums.ImUriEnum;
 
 public class TencentImMsgUtil {
 

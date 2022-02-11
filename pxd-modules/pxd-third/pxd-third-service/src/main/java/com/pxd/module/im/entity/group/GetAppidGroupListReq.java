@@ -1,6 +1,6 @@
 package com.pxd.module.im.entity.group;
 
-import com.pxd.dubbo.three.im.enums.GroupTypeEnum;
+import com.pxd.module.im.enums.GroupTypeEnum;
 
 public class GetAppidGroupListReq {
 

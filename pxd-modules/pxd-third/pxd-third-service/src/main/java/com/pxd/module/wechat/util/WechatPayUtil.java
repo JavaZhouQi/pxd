@@ -1,6 +1,13 @@
 package com.pxd.module.wechat.util;
 
 import cn.hutool.json.JSONUtil;
+import com.pxd.module.im.enums.ChannelEnum;
+import com.pxd.module.im.enums.WechatPayQueryTypeEnum;
+import com.pxd.module.wechat.config.WechatPayProperties;
+import com.pxd.module.wechat.constant.WechatPayHttpTypeEnum;
+import com.pxd.module.wechat.constant.WechatUrlEnum;
+import com.pxd.module.wechat.entity.*;
+import com.pxd.module.wechat.exception.WechatException;
 import com.wechat.pay.contrib.apache.httpclient.WechatPayHttpClientBuilder;
 import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner;
 import com.wechat.pay.contrib.apache.httpclient.auth.Verifier;
@@ -10,13 +17,6 @@ import com.wechat.pay.contrib.apache.httpclient.cert.CertificatesManager;
 import com.wechat.pay.contrib.apache.httpclient.exception.HttpCodeException;
 import com.wechat.pay.contrib.apache.httpclient.exception.NotFoundException;
 import com.wechat.pay.contrib.apache.httpclient.util.PemUtil;
-import com.xyunchain.third.api.constant.WechatTransactionsQueryTypeEnum;
-import com.xyunchain.third.constant.ChannelEnum;
-import com.xyunchain.third.module.wechat.config.WechatPayProperties;
-import com.xyunchain.third.module.wechat.constant.WechatPayHttpTypeEnum;
-import com.xyunchain.third.module.wechat.constant.WechatUrlEnum;
-import com.xyunchain.third.module.wechat.entity.*;
-import com.xyunchain.third.module.wechat.exception.WechatException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -72,7 +72,7 @@ public class WechatPayUtil {
         String url = wechatPayProperties.getUrl() + WechatUrlEnum.TRANSACTIONS_JSAPI.getUrl();
         wechatTransactionsJsapiEntity.setAppid(wechatPayProperties.getAppid());
         wechatTransactionsJsapiEntity.setMchid(wechatPayProperties.getMch_id());
-        wechatTransactionsJsapiEntity.setNotify_url(wechatPayProperties.getNotifyUrl() + ChannelEnum.WECHAT_PAY.getChannel());
+        wechatTransactionsJsapiEntity.setNotify_url(wechatPayProperties.getNotifyUrl() + ChannelEnum.WECHAT_NOTICE.getChannel());
         return httpSend(WechatPayHttpTypeEnum.HTTP_POST.getType(), url, wechatTransactionsJsapiEntity, WechatTransactionsJsapiResp.class);
     }
 
@@ -81,10 +81,10 @@ public class WechatPayUtil {
      */
     public static WechatTransactionsQueryResp transactionsQuery(int queryType, String orderId) {
         String url = null;
-        if (Objects.equals(queryType, WechatTransactionsQueryTypeEnum.WECHAT_ORDER.getType())) {
+        if (Objects.equals(queryType, WechatPayQueryTypeEnum.WECHAT_ORDER.getType())) {
             url = wechatPayProperties.getUrl() + String.format(WechatUrlEnum.TRANSACTIONS_ID.getUrl(), orderId, wechatPayProperties.getMch_id());
         }
-        if (Objects.equals(queryType, WechatTransactionsQueryTypeEnum.MER_ORDER.getType())) {
+        if (Objects.equals(queryType, WechatPayQueryTypeEnum.MER_ORDER.getType())) {
             url = wechatPayProperties.getUrl() + String.format(WechatUrlEnum.TRANSACTIONS_OUT_TRADE_NO.getUrl(), orderId, wechatPayProperties.getMch_id());
         }
         return httpSend(WechatPayHttpTypeEnum.HTTP_GET.getType(), url, null, WechatTransactionsQueryResp.class);
@@ -104,7 +104,7 @@ public class WechatPayUtil {
      * 申请退款
      */
     public static WechatTransactionsRefundsResp transactionsRefunds(WechatTransactionsRefundsEntity wechatTransactionsRefundsEntity) {
-        wechatTransactionsRefundsEntity.setNotify_url(wechatPayProperties.getNotifyUrl() + ChannelEnum.WECHAT_REFUND.getChannel());
+        wechatTransactionsRefundsEntity.setNotify_url(wechatPayProperties.getNotifyUrl() + ChannelEnum.WECHAT_NOTICE.getChannel());
         String url = wechatPayProperties.getUrl() + WechatUrlEnum.TRANSACTIONS_REFUNDS.getUrl();
         return httpSend(WechatPayHttpTypeEnum.HTTP_POST.getType(), url, wechatTransactionsRefundsEntity, WechatTransactionsRefundsResp.class);
     }
@@ -182,32 +182,6 @@ public class WechatPayUtil {
             throw new WechatException("HTTP 调用异常", e);
         }
         return JSONUtil.toBean(resp, tClass);
-    }
-
-    public static void main(String[] args) throws IOException, URISyntaxException, GeneralSecurityException, HttpCodeException, NotFoundException {
-        new WechatPayUtil(new WechatPayProperties());
-//        WechatTransactionsJsapiEntity wechatTransactionsJsapiEntity = new WechatTransactionsJsapiEntity();
-//        wechatTransactionsJsapiEntity.setDescription("Image形象店-深圳腾大-QQ公仔");
-//        wechatTransactionsJsapiEntity.setOut_trade_no("123456");
-//        // wechatTransactionsJsapiEntity.setTime_expire("");
-//        wechatTransactionsJsapiEntity.setAttach("456");
-//        wechatTransactionsJsapiEntity.setNotify_url("https://baidu.com");
-//        //wechatTransactionsJsapiEntity.setGoods_tag("");
-//        WechatAmountEntity amount = new WechatAmountEntity();
-//        //amount.setCurrency();
-//        amount.setTotal(1L);
-//        wechatTransactionsJsapiEntity.setAmount(amount);
-//        WechatPayerEntity payer = new WechatPayerEntity();
-//        payer.setOpenid("oJoL85WfB6-tmgiWoqmFG4iw4tOc");
-//        wechatTransactionsJsapiEntity.setPayer(payer);
-        //wechatTransactionsJsapiEntity.setDetail("");
-        //wechatTransactionsJsapiEntity.setScene_info("");
-        //wechatTransactionsJsapiEntity.setSettle_info("");
-        //System.out.println(JSONUtil.toJsonStr(transactionsJsapi(wechatTransactionsJsapiEntity)));
-        //wx14105450612783d0384d0f902d751b0000 wx14105550620839d0384d0f90f948a50000
-        //System.out.println(JSONUtil.toJsonStr(transactionsQuery(WechatTransactionsQueryTypeEnum.MER_ORDER.getType(), "123456")));
-        System.out.println(JSONUtil.toJsonStr(transactionsClose("123456")));
-
     }
 
 }

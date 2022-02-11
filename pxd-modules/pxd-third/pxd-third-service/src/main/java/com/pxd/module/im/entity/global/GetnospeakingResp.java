@@ -1,7 +1,7 @@
 package com.pxd.module.im.entity.global;
 
 
-import com.pxd.dubbo.three.im.entity.ImResp;
+import com.pxd.module.im.entity.ImResp;
 
 public class GetnospeakingResp extends ImResp {
 

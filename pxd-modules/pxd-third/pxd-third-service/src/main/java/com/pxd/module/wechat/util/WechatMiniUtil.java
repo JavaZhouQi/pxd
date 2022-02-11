@@ -6,29 +6,29 @@ import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.xyunchain.common.redis.RedisUtil;
-import com.xyunchain.third.module.wechat.config.*;
-import com.xyunchain.third.module.wechat.constant.WechatRedisKeyConstant;
-import com.xyunchain.third.module.wechat.constant.WechatUrlEnum;
-import com.xyunchain.third.module.wechat.entity.*;
-import com.xyunchain.third.module.wechat.exception.WechatException;
+import com.pxd.module.wechat.config.WechatMiniProperties;
+import com.pxd.module.wechat.constant.WechatRedisKeyConstant;
+import com.pxd.module.wechat.constant.WechatUrlEnum;
+import com.pxd.module.wechat.entity.*;
+import com.pxd.module.wechat.exception.WechatException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.entity.ContentType;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
 public class WechatMiniUtil {
 
-    private static RedisUtil redisUtil;
+    private static RedissonClient redissonClient;
     private static WechatMiniProperties wechatProperties;
 
-    @Autowired
-    public WechatMiniUtil(RedisUtil redisUtil, WechatMiniProperties wechatProperties) {
-        WechatMiniUtil.redisUtil = redisUtil;
+    public WechatMiniUtil(RedissonClient redissonClient, WechatMiniProperties wechatProperties) {
+        WechatMiniUtil.redissonClient = redissonClient;
         WechatMiniUtil.wechatProperties = wechatProperties;
     }
 
@@ -37,15 +37,16 @@ public class WechatMiniUtil {
      */
     public static String getAccessToken() {
         // TODO AccessToken后续需要区分测试，跟生产环境
-        if (redisUtil.hasKey(WechatRedisKeyConstant.ACCESS_TOKEN)) {
-            return (String) redisUtil.get(WechatRedisKeyConstant.ACCESS_TOKEN);
+        RBucket<String> bucket = redissonClient.getBucket(WechatRedisKeyConstant.ACCESS_TOKEN);
+        if (bucket.isExists()) {
+            return bucket.get();
         }
         WechatAccessTokenEntity wechatAccessTokenEntity = httpGet(String.format(WechatUrlEnum.ACCESS_TOKEN.getUrl(), wechatProperties.getAppid(), wechatProperties.getSecret()), WechatAccessTokenEntity.class);
         System.out.println(JSONUtil.toJsonStr(wechatAccessTokenEntity));
         if (!wechatAccessTokenEntity.isSuccess()) {
             throw new WechatException("获取AccessToken异常,信息：" + wechatAccessTokenEntity.getErrmsg());
         }
-        redisUtil.set(WechatRedisKeyConstant.ACCESS_TOKEN, wechatAccessTokenEntity.getAccess_token(), wechatAccessTokenEntity.getExpires_in() - 5);
+        bucket.set(wechatAccessTokenEntity.getAccess_token(), wechatAccessTokenEntity.getExpires_in() - 5, TimeUnit.SECONDS);
         return wechatAccessTokenEntity.getAccess_token();
     }
 

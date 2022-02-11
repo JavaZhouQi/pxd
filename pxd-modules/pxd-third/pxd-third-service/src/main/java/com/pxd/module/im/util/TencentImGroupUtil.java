@@ -1,7 +1,8 @@
 package com.pxd.module.im.util;
 
-import com.pxd.dubbo.three.im.entity.ImResp;
-import com.pxd.dubbo.three.im.enums.ImUriEnum;
+import com.pxd.module.im.entity.ImResp;
+import com.pxd.module.im.entity.group.*;
+import com.pxd.module.im.enums.ImUriEnum;
 import lombok.extern.slf4j.Slf4j;
 
 /**

@@ -1,6 +1,6 @@
 package com.pxd.module.im.entity.group;
 
-import com.pxd.dubbo.three.im.entity.ImResp;
+import com.pxd.module.im.entity.ImResp;
 
 public class SendGroupMsgResp extends ImResp {
     /*** 消息发送的时间戳，对应后台 server 时间*/

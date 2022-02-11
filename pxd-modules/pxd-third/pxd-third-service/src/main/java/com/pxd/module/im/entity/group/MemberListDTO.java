@@ -1,6 +1,6 @@
 package com.pxd.module.im.entity.group;
 
-import com.pxd.dubbo.three.im.entity.ImKeyValueDTO;
+import com.pxd.module.im.entity.ImKeyValueDTO;
 
 import java.util.List;
 

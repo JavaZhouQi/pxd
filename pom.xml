@@ -13,6 +13,7 @@
         <module>pxd-common</module>
         <module>pxd-gateway</module>
         <module>pxd-modules</module>
+        <module>pxd-jobs</module>
     </modules>
 
     <properties>

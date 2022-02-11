@@ -1,8 +1,8 @@
 package com.pxd.module.im.entity.msg;
 
-import com.pxd.dubbo.three.im.entity.msg.context.MsgContent;
-import com.pxd.dubbo.three.im.entity.msg.context.TIMTextElem;
-import com.pxd.dubbo.three.im.enums.MsgTypeEnum;
+import com.pxd.module.im.entity.msg.context.MsgContent;
+import com.pxd.module.im.entity.msg.context.TIMTextElem;
+import com.pxd.module.im.enums.MsgTypeEnum;
 
 public class MsgBody {
 
