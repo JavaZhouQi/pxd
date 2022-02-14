@@ -1,7 +1,7 @@
 package com.pxd.controller;
 
 import com.pxd.common.base.result.Result;
-import com.pxd.service.ControlSysUserService;
+import com.pxd.service.SysUserService;
 import com.pxd.vo.SysUserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,18 +16,20 @@ import javax.validation.Valid;
 public class SysUserController {
 
     @Resource
-    ControlSysUserService controlSysUserService;
+    SysUserService sysUserService;
 
     @ApiOperation(value = "查询用户信息")
     @GetMapping
     public Result<?> getUserInfo() {
-        return controlSysUserService.getUserInfo();
+        return sysUserService.getUserInfo();
     }
 
     @ApiOperation(value = "添加用户")
     @PostMapping
     public Result<?> add(@Valid @RequestBody SysUserVo sysUserVo) {
-        return controlSysUserService.add(sysUserVo);
+        return sysUserService.add(sysUserVo);
     }
+
+
 
 }

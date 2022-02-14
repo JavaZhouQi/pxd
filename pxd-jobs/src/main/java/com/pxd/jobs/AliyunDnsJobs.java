@@ -1,9 +1,7 @@
 package com.pxd.jobs;
 
-import cn.hutool.json.JSONUtil;
 import com.aliyun.alidns20150109.models.DescribeDomainRecordsResponseBody;
 import com.pxd.utils.AliYunDnsUtils;
-import com.sun.org.apache.xerces.internal.impl.dv.XSSimpleType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -30,7 +28,6 @@ public class AliyunDnsJobs {
         String ip = AliyunDnsJobs.replaceAllBlank(AliYunDnsUtils.getIp());
         log.info("查询到当前ip:{},原ip:{}", ip, formerIp);
         if (Objects.equals(ip, formerIp)) {
-            log.info("ip未发生改变，任务结束");
             return;
         }
         List<DescribeDomainRecordsResponseBody.DescribeDomainRecordsResponseBodyDomainRecordsRecord> describeDomainRecordsResponseBodyDomainRecordsRecords = AliYunDnsUtils.domainRecords(domainName);

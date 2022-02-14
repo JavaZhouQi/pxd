@@ -62,6 +62,13 @@ public class Result<T> implements Serializable {
         return result;
     }
 
+    public static <T> Result<T> error(String msg) {
+        Result<T> result = new Result<>();
+        result.setCode(ErrorCodeEnum.FAIL.getCode());
+        result.setMsg(msg);
+        return result;
+    }
+
     public static <T> Result<T> result(ErrorCodeEnum errorCodeEnum) {
         Result<T> result = new Result<>();
         result.setCode(errorCodeEnum.getCode());

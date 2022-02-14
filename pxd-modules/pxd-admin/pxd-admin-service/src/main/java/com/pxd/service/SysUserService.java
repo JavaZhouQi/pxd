@@ -11,13 +11,18 @@ import com.pxd.vo.SysUserVo;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
+import static com.pxd.common.base.enums.ErrorCodeEnum.USER_REPEATED_ACCOUNT;
+
 @Service
-public class ControlSysUserService {
+public class SysUserService {
 
     @DubboReference
     SysUserDubbo sysUserDubbo;
 
     public Result<?> add(SysUserVo sysUserVo) {
+        if (sysUserDubbo.findByUsername(sysUserVo.getUsername()) != null) {
+            return Result.result(USER_REPEATED_ACCOUNT);
+        }
         SysUserDto sysUserDto = ConvertUtils.sourceToTarget(sysUserVo, SysUserDto.class);
         // 密码编码
         sysUserDto.setPassword(SecurityUtil.encodePassword(sysUserVo.getPassword()));
