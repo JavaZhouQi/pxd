@@ -19,16 +19,6 @@ public class SysUserDubboImpl implements SysUserDubbo {
     ISysUserService sysUserService;
 
     @Override
-    public void add(SysUserDto sysUserDto) {
-        SysUser sysUser = ConvertUtils.sourceToTarget(sysUserDto, SysUser.class);
-        sysUser.setStatus(Whether.YES.getCode());
-        LocalDateTime now = LocalDateTime.now();
-        sysUser.setCreateTime(now);
-        sysUser.setUpdateTime(now);
-        sysUserService.save(sysUser);
-    }
-
-    @Override
     public SysUserDto findByUsername(String username) {
         LambdaQueryWrapper<SysUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(SysUser::getUsername, username);
@@ -38,4 +28,15 @@ public class SysUserDubboImpl implements SysUserDubbo {
         }
         return ConvertUtils.sourceToTarget(sysUser, SysUserDto.class);
     }
+
+    @Override
+    public void add(SysUserDto sysUserDto) {
+        SysUser sysUser = ConvertUtils.sourceToTarget(sysUserDto, SysUser.class);
+        sysUser.setStatus(Whether.YES.getCode());
+        LocalDateTime now = LocalDateTime.now();
+        sysUser.setCreateTime(now);
+        sysUser.setUpdateTime(now);
+        sysUserService.save(sysUser);
+    }
+
 }

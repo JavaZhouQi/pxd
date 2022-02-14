@@ -4,8 +4,8 @@ import com.pxd.user.api.dto.SysUserDto;
 
 public interface SysUserDubbo {
 
-    void add(SysUserDto sysUserDto);
-
     SysUserDto findByUsername(String username);
+
+    void add(SysUserDto sysUserDto);
 
 }

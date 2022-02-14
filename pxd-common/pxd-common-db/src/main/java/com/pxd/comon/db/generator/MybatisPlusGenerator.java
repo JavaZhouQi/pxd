@@ -8,7 +8,7 @@ import java.util.Collections;
 public class MybatisPlusGenerator {
 
     public static void main(String[] args) {
-        FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/pxd_user", "root", "root")
+        FastAutoGenerator.create("jdbc:mysql://nginx.pixiaodan.cn:3306/pxd_user", "root", "root")
                 .globalConfig(builder -> {
                     builder.author("PiXiaoDan") // 设置作者
                             .enableSwagger() // 开启 swagger 模式

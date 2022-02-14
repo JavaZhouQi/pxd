@@ -30,6 +30,10 @@ public class SysUserController {
         return sysUserService.add(sysUserVo);
     }
 
-
+    @ApiOperation(value = "修改用户")
+    @PutMapping
+    public Result<?> update(@Valid @RequestBody SysUserVo sysUserVo) {
+        return sysUserService.add(sysUserVo);
+    }
 
 }
