@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @ApiModel(value = "用户新增对象")
 public class SysUserAddDto implements Serializable {
 
+
     @ApiModelProperty(value = "用户名")
     private String username;
 

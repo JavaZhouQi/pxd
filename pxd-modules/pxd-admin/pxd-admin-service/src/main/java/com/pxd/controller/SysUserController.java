@@ -32,6 +32,7 @@ public class SysUserController {
     @ApiOperation(value = "添加用户")
     @PostMapping
     public Result<?> add(@Valid @RequestBody SysUserAddDto sysUserAddDto) {
+        sysUserAddDto.setPassword(SecurityUtil.encodePassword(sysUserAddDto.getPassword()));
         return sysUserDubbo.add(sysUserAddDto);
     }
 
