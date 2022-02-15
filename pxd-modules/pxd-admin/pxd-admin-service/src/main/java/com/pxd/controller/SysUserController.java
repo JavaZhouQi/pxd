@@ -29,20 +29,21 @@ public class SysUserController {
         return sysUserDubbo.findById(SecurityUtil.getUserId());
     }
 
-    @ApiOperation(value = "添加用户")
+    @ApiOperation(value = "添加")
     @PostMapping
     public Result<?> add(@Valid @RequestBody SysUserAddDto sysUserAddDto) {
+        // 密码加密
         sysUserAddDto.setPassword(SecurityUtil.encodePassword(sysUserAddDto.getPassword()));
         return sysUserDubbo.add(sysUserAddDto);
     }
 
-    @ApiOperation(value = "修改用户")
+    @ApiOperation(value = "修改")
     @PutMapping
     public Result<?> update(@Valid @RequestBody SysUserUpdateDto sysUserUpdateDto) {
         return sysUserDubbo.update(sysUserUpdateDto);
     }
 
-    @ApiOperation(value = "删除用户")
+    @ApiOperation(value = "删除")
     @DeleteMapping("{id}")
     public Result<?> del(@PathVariable Long id) {
         return sysUserDubbo.del(id);
@@ -50,7 +51,7 @@ public class SysUserController {
 
     @ApiOperation(value = "分页")
     @PostMapping("page")
-    public Result<PageData<SysUserDto>> page(@RequestBody SysUserPageDto sysUserPageDto) {
+    public Result<PageData<SysUserDto>> page(@Valid @RequestBody SysUserPageDto sysUserPageDto) {
         return sysUserDubbo.page(sysUserPageDto);
     }
 

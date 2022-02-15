@@ -12,18 +12,18 @@ import com.pxd.user.api.dto.SysUserDto;
 import com.pxd.user.api.dto.SysUserPageDto;
 import com.pxd.user.api.dto.SysUserUpdateDto;
 import com.pxd.user.api.dubbo.SysUserDubbo;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.BeanUtils;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@AllArgsConstructor
 @DubboService
 public class SysUserDubboImpl implements SysUserDubbo {
 
-    @Resource
     ISysUserService sysUserService;
 
     @Override
@@ -66,7 +66,7 @@ public class SysUserDubboImpl implements SysUserDubbo {
 
     @Override
     public Result<?> del(Long id) {
-        return sysUserService.removeById(id) ? Result.ok() : Result.error("删除失败");
+        return sysUserService.removeById(id) ? Result.ok() : Result.error();
     }
 
     @Override
