@@ -1,6 +1,6 @@
 package com.pxd.controller;
 
-import com.pxd.common.base.result.Result;
+import com.pxd.common.result.result.Result;
 import com.pxd.security.annotation.AnonymousAccess;
 import com.pxd.service.LoginService;
 import com.pxd.vo.LoginVo;

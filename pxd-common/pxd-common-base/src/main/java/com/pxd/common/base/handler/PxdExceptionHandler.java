@@ -1,8 +1,8 @@
 package com.pxd.common.base.handler;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
-import com.pxd.common.base.enums.ErrorCodeEnum;
-import com.pxd.common.base.result.Result;
+import com.pxd.common.result.enums.ErrorCodeEnum;
+import com.pxd.common.result.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

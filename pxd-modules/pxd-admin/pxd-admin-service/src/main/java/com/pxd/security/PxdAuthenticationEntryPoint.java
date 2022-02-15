@@ -1,8 +1,8 @@
 package com.pxd.security;
 
 import cn.hutool.json.JSONUtil;
-import com.pxd.common.base.enums.ErrorCodeEnum;
-import com.pxd.common.base.result.Result;
+import com.pxd.common.result.enums.ErrorCodeEnum;
+import com.pxd.common.result.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.AuthenticationException;

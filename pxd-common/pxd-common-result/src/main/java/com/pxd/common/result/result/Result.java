@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * 响应数据
@@ -74,6 +75,10 @@ public class Result<T> implements Serializable {
         result.setCode(errorCodeEnum.getCode());
         result.setMsg(errorCodeEnum.getDesc());
         return result;
+    }
+
+    public boolean isSuccess() {
+        return Objects.equals(code, ErrorCodeEnum.SUCCESS.getCode());
     }
 
     public int getCode() {

@@ -1,6 +1,7 @@
 package com.pxd.dubbo.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pxd.common.base.utils.ConvertUtils;
 import com.pxd.common.result.page.PageData;
 import com.pxd.common.result.result.Result;
@@ -12,8 +13,11 @@ import com.pxd.user.api.dto.SysUserPageDto;
 import com.pxd.user.api.dto.SysUserUpdateDto;
 import com.pxd.user.api.dubbo.SysUserDubbo;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.beans.BeanUtils;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 @DubboService
 public class SysUserDubboImpl implements SysUserDubbo {
@@ -23,27 +27,53 @@ public class SysUserDubboImpl implements SysUserDubbo {
 
     @Override
     public Result<SysUserDto> findById(Long userId) {
-        return null;
+        SysUser sysUser = sysUserService.getById(userId);
+        if (sysUser == null) {
+            return Result.error("数据不存在");
+        }
+        return Result.ok(ConvertUtils.sourceToTarget(sysUser, SysUserDto.class));
     }
 
     @Override
     public Result<?> add(SysUserAddDto sysUserAddDto) {
-        return null;
+        if (findByUsername(sysUserAddDto.getUsername()) != null) {
+            return Result.error("账号已存在");
+        }
+        SysUser sysUser = ConvertUtils.sourceToTarget(sysUserAddDto, SysUser.class);
+        LocalDateTime now = LocalDateTime.now();
+        sysUser.setCreateTime(now);
+        sysUser.setUpdateTime(now);
+        sysUserService.save(sysUser);
+        return Result.ok();
     }
 
     @Override
     public Result<?> update(SysUserUpdateDto sysUserUpdateDto) {
-        return null;
+        SysUserDto byUsername = findByUsername(sysUserUpdateDto.getUsername());
+        if (byUsername != null && !Objects.equals(byUsername.getId(), sysUserUpdateDto.getId())) {
+            return Result.error("账号已存在");
+        }
+        SysUser sysUser = sysUserService.getById(sysUserUpdateDto.getId());
+        if (sysUser == null) {
+            return Result.error("数据不存在");
+        }
+        BeanUtils.copyProperties(sysUserUpdateDto, sysUser);
+        sysUser.setUpdateTime(LocalDateTime.now());
+        sysUserService.updateById(sysUser);
+        return Result.ok();
     }
 
     @Override
     public Result<?> del(Long id) {
-        return null;
+        return sysUserService.removeById(id) ? Result.ok() : Result.error("删除失败");
     }
 
     @Override
     public Result<PageData<SysUserDto>> page(SysUserPageDto sysUserPageDto) {
-        return null;
+        Page<SysUser> pageParam = new Page<>(sysUserPageDto.getCurrentPage(), sysUserPageDto.getPageSize());
+        LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
+        Page<SysUser> page = sysUserService.page(pageParam, queryWrapper);
+        return Result.ok(PageData.init(ConvertUtils.sourceToTarget(page.getRecords(), SysUserDto.class), page.getTotal()));
     }
 
     @Override
