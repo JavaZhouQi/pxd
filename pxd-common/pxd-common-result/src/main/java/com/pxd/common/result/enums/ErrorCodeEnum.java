@@ -1,4 +1,4 @@
-package com.pxd.common.base.enums;
+package com.pxd.common.result.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

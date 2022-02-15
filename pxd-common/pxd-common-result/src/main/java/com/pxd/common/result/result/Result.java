@@ -1,6 +1,6 @@
-package com.pxd.common.base.result;
+package com.pxd.common.result.result;
 
-import com.pxd.common.base.enums.ErrorCodeEnum;
+import com.pxd.common.result.enums.ErrorCodeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

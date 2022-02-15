@@ -65,16 +65,17 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>swagger-bootstrap-ui</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.pxd</groupId>
+            <artifactId>pxd-common-result</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>

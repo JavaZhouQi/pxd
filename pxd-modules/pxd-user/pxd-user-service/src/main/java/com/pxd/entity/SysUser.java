@@ -1,51 +1,32 @@
 package com.pxd.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 系统用户表
- * </p>
- *
- * @author PiXiaoDan
- * @since 2021-12-22
- */
 @Data
 public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
+    @ApiModelProperty("id")
     private Long id;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty("用户名")
     private String username;
 
-    /**
-     * 密码
-     */
+    @ApiModelProperty("密码")
     private String password;
 
-    /**
-     * 状态 1 可用 0不可用
-     */
+    @ApiModelProperty("状态 1 可用 0不可用")
     private Integer status;
 
-    /**
-     * 创建时间
-     */
+    @ApiModelProperty("创建时间")
     private LocalDateTime createTime;
 
-    /**
-     * 修改时间
-     */
+    @ApiModelProperty("修改时间")
     private LocalDateTime updateTime;
 
 }

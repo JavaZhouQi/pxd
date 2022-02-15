@@ -8,19 +8,19 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>pxd-common</artifactId>
-    <packaging>pom</packaging>
+
+    <artifactId>pxd-common-result</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
-    <modules>
-        <module>pxd-common-base</module>
-        <module>pxd-common-db</module>
-        <module>pxd-common-cache</module>
-        <module>pxd-common-result</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
