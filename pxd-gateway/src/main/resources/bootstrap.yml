@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: pxd-gateway
+  profiles:
+    active: dev
   cloud:
     nacos:
       discovery:

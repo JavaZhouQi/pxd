@@ -5,6 +5,8 @@ spring:
   application:
     # 应用名称
     name: pxd-admin
+  profiles:
+    active: dev
   cloud:
     nacos:
       discovery:

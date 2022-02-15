@@ -19,7 +19,8 @@ spring:
   application:
     # 应用名称
     name: pxd-three
-
+  profiles:
+    active: dev
 tencent:
   im:
     url: https://console.tim.qq.com/

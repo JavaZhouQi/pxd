@@ -22,6 +22,8 @@ spring:
   application:
     # 应用名称
     name: pxd-user
+  profiles:
+    active: dev
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
