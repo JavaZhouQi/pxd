@@ -12,6 +12,7 @@ import com.pxd.user.api.dto.SysUserDto;
 import com.pxd.user.api.dto.SysUserPageDto;
 import com.pxd.user.api.dto.SysUserUpdateDto;
 import com.pxd.user.api.dubbo.SysUserDubbo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.BeanUtils;
 
@@ -72,6 +73,11 @@ public class SysUserDubboImpl implements SysUserDubbo {
     public Result<PageData<SysUserDto>> page(SysUserPageDto sysUserPageDto) {
         Page<SysUser> pageParam = new Page<>(sysUserPageDto.getCurrentPage(), sysUserPageDto.getPageSize());
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper
+                .like(StringUtils.isNoneBlank(sysUserPageDto.getUsername()), SysUser::getUsername, sysUserPageDto.getUsername())
+                .eq(!Objects.isNull(sysUserPageDto.getStatus()), SysUser::getStatus, sysUserPageDto.getStatus())
+                .between(!Objects.isNull(sysUserPageDto.getStartCreateTime()) && !Objects.isNull(sysUserPageDto.getEndCreateTime()), SysUser::getCreateTime, sysUserPageDto.getStartCreateTime(), sysUserPageDto.getEndCreateTime())
+                .orderByDesc(SysUser::getCreateTime);
         Page<SysUser> page = sysUserService.page(pageParam, queryWrapper);
         return Result.ok(PageData.init(ConvertUtils.sourceToTarget(page.getRecords(), SysUserDto.class), page.getTotal()));
     }

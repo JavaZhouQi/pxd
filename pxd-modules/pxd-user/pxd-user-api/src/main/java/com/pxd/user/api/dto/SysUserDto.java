@@ -1,5 +1,6 @@
 package com.pxd.user.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class SysUserDto implements Serializable {
     @ApiModelProperty(value = "用户名")
     private String username;
 
+    @JsonIgnore
     @ApiModelProperty(value = "密码")
     private String password;
 
