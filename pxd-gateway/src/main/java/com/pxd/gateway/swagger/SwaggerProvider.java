@@ -15,9 +15,11 @@ import java.util.List;
 @Primary
 @Component
 public class SwaggerProvider implements SwaggerResourcesProvider {
+
     private static final String API_URI = "/v2/api-docs";
+
     @Autowired
-    private SwaggerRoute swaggerRoute;
+    SwaggerRoute swaggerRoute;
 
     @Override
     public List<SwaggerResource> get() {

@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 2222
 spring:
   application:
     name: pxd-gateway
@@ -13,7 +13,7 @@ spring:
             context-path: ${server.servlet.context-path}/actuator
         server-addr: 127.0.0.1:8848
         #nacos的命名空间ID，默认是public
-    #        namespace: ${nacos.namespace}
+        namespace: ${nacos.namespace}
     #      config:
     #        server-addr: ${nacos.host}
     #        namespace: ${nacos.namespace}

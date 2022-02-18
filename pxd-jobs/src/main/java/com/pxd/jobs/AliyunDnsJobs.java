@@ -23,16 +23,16 @@ public class AliyunDnsJobs {
         add("nginx");
     }};
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0 0/10 * * * ?")
     public void execute() {
         String ip = AliyunDnsJobs.replaceAllBlank(AliYunDnsUtils.getIp());
-        log.info("查询到当前ip:{},原ip:{}", ip, formerIp);
-        if (Objects.equals(ip, formerIp)) {
+        log.info("查询到当前ip:{}", ip);
+        if (ip == null ) {
             return;
         }
         List<DescribeDomainRecordsResponseBody.DescribeDomainRecordsResponseBodyDomainRecordsRecord> describeDomainRecordsResponseBodyDomainRecordsRecords = AliYunDnsUtils.domainRecords(domainName);
         describeDomainRecordsResponseBodyDomainRecordsRecords.forEach(entity -> {
-            if (rrList.contains(entity.getRR())) {
+            if (rrList.contains(entity.getRR()) && !Objects.equals(ip, entity.getValue())) {
                 AliYunDnsUtils.updateDomainIp(entity, ip);
             }
         });

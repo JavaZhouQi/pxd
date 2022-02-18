@@ -1,5 +1,6 @@
 package com.pxd.gateway.swagger;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,11 @@ import java.util.Optional;
 public class SwaggerHandler {
 
     @Autowired(required = false)
-    private SecurityConfiguration securityConfiguration;
+    SecurityConfiguration securityConfiguration;
     @Autowired(required = false)
-    private UiConfiguration uiConfiguration;
+    UiConfiguration uiConfiguration;
     @Autowired
-    private SwaggerResourcesProvider swaggerResources;
+    SwaggerResourcesProvider swaggerResources;
 
     @GetMapping("/configuration/security")
     public Mono<ResponseEntity<SecurityConfiguration>> securityConfiguration() {

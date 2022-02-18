@@ -39,7 +39,13 @@ public class AliYunDnsUtils {
      * 获取公网ip
      */
     public static String getIp() {
-        return HttpUtil.get(ifConfigIpUrl);
+        String ip = null;
+        try {
+            ip = HttpUtil.get(ifConfigIpUrl);
+        } catch (Exception e) {
+            log.error("获取ip异常", e);
+        }
+        return ip;
     }
 
     /**
@@ -64,10 +70,11 @@ public class AliYunDnsUtils {
 
     /**
      * 修改ip
+     *
      * @param describeDomainRecordsResponseBodyDomainRecordsRecord
      * @param ip
      */
-    public static void updateDomainIp(DescribeDomainRecordsResponseBody.DescribeDomainRecordsResponseBodyDomainRecordsRecord describeDomainRecordsResponseBodyDomainRecordsRecord,String ip) {
+    public static void updateDomainIp(DescribeDomainRecordsResponseBody.DescribeDomainRecordsResponseBodyDomainRecordsRecord describeDomainRecordsResponseBodyDomainRecordsRecord, String ip) {
         UpdateDomainRecordRequest updateDomainRecordRequest = new UpdateDomainRecordRequest();
         updateDomainRecordRequest.setRecordId(describeDomainRecordsResponseBodyDomainRecordsRecord.getRecordId());
         updateDomainRecordRequest.setRR(describeDomainRecordsResponseBodyDomainRecordsRecord.getRR());
