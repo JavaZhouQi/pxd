@@ -49,7 +49,7 @@ public class DtkUtil {
     }
 
     /**
-     * 大淘客搜索
+     * 超级搜索
      */
     public static ListSuperGoodsResp listSuperGoods(ListSuperGoodsReq listSuperGoodsReq) {
         String resp = send(DtkUriEnum.LIST_SUPER_GOODS, listSuperGoodsReq);
@@ -124,7 +124,7 @@ public class DtkUtil {
     }
 
     /**
-     * 拼多多商品转链
+     * 商品评价 - 只支持淘宝
      */
     public static CommentListResp commentList(CommentListReq commentListReq) {
         String resp = send(DtkUriEnum.COMMENT_LIST, commentListReq);
@@ -141,7 +141,6 @@ public class DtkUtil {
         log.info("[大淘客]请求参数:ID:{},URI{},PARM:{}", uid, dtkUriEnum.getUri(), JSONUtil.toJsonStr(dtkBaseReq));
         String respStr = HttpUtil.get(dtkConfig.getUrl() + dtkUriEnum.getUri(), setSignToMap(dtkBaseReq), TIMEOUT);
         DtkBaseResp dtkBaseResp = JSONUtil.toBean(respStr, DtkBaseResp.class);
-        System.out.println(respStr);
         boolean success = DtkBaseResp.isSuccess(dtkBaseResp);
         log.info("[大淘客]响应结果:ID:{},IS_SUCCESS:{},MSG:{}", uid, success, dtkBaseResp.getMsg());
         if (success) {

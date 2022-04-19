@@ -47,7 +47,7 @@ public class TbGoodsDetailResp {
     private String couponLink;
     /*** 券总量 */
     private String couponTotalNum;
-    /***  领券量 */
+    /*** 领券量 */
     private String couponReceiveNum;
     /*** 优惠券结束时间 */
     private String couponEndTime;
@@ -106,7 +106,7 @@ public class TbGoodsDetailResp {
     /*** 放单人名称 */
     private String teamName;
     /*** 商品详情图（需要做适配） */
-    private String detailPics;
+    private List<DetailPic> detailPics;
     /*** 淘宝轮播图 */
     private String imgs;
     /*** 相关商品图 */
@@ -157,7 +157,7 @@ public class TbGoodsDetailResp {
     private String inspectedGoods;
 
     @Data
-    private static class MarketGroup{
+    public static class MarketGroup{
         /*** 活动信息(10/27新增字段) */
         private String activityInfo;
         /*** 活动名称(10/27新增字段) */
@@ -167,7 +167,7 @@ public class TbGoodsDetailResp {
     }
 
     @Data
-    private static class detailPic{
+    public static class DetailPic {
         private String hotAreaList;
         private String img;
         private String width;

@@ -2,6 +2,7 @@ package com.pxd.module.dtk.entity;
 
 import lombok.Data;
 
+
 @Data
 public class PddGoodsSearchReq extends DtkBaseReq {
 
@@ -26,9 +27,9 @@ public class PddGoodsSearchReq extends DtkBaseReq {
     /*** 商品标签类目ID */
     private Integer optId;
     /*** 默认值1，商品分页数 */
-    private Long page = 1L;
+    private String page = "1";
     /*** 默认100，每页商品数量 */
-    private Long pageSize = 10L;
+    private String pageSize = "10";
     /*** 筛选范围列表 样例：[{"range_id":0,"range_from":1,"range_to":1500}, {"range_id":1,"range_from":1,"range_to":1500}] */
     private String rangeList;
     /*** 排序方式:0-综合排序;2-按佣金比例降序;3-按价格升序;4-按价格降序;6-按销量降序;9-券后价升序排序;10-券后价降序排序;16-店铺描述评分降序 */

@@ -13,7 +13,7 @@ public class PddGoodsSearchResp {
     private List<GoodsResp> goodsList;
 
     @Data
-    private static class GoodsResp {
+    public static class GoodsResp {
         /*** 商品活动标记数组，例：4,7，4-秒杀 7-百亿补贴等 */
         private List<String> activityTags;
         /***商品类目id */

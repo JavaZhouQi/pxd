@@ -7,9 +7,9 @@ import java.util.List;
 @Data
 public class ListSuperGoodsResp {
 
-    private Long totalNum;
+    private String totalNum;
 
-    private Long pageId;
+    private String pageId;
 
     private List<GoodsResp> list;
 
@@ -137,24 +137,20 @@ public class ListSuperGoodsResp {
 
         @Data
         private static class ActivityInfo{
-
             /*** 活动名称（10/27新增字段） */
             private String activityName;
             /*** 活动ID（10/27新增字段） */
             private String activityId;
-
         }
 
         @Data
         private static class Brand {
-
             /*** 品牌ID(2021/1/15新增字段) */
             private String brandId;
             /*** 品牌logo地址(2021/1/15新增字段) */
             private String brandLogo;
             /*** 品牌名称(2021/1/15新增字段) */
             private String brandName;
-
         }
 
     }

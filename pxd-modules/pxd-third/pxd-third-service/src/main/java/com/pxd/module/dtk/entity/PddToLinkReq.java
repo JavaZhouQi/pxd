@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class PddToLinkReq extends DtkBaseReq {
+
     /*** 拼多多推广位id */
     private String pid;
     /*** 商品goodsSign 访问括号内链接可查看字段相关说明(http://www.dataoke.com/kfpt/open-gz.html?id=100) */
@@ -12,4 +13,5 @@ public class PddToLinkReq extends DtkBaseReq {
     private String customParameters;
     /*** 招商多多客ID */
     private String zsDuoId;
+
 }

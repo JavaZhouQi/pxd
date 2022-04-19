@@ -8,9 +8,9 @@ public class ListSuperGoodsReq extends DtkBaseReq {
     /*** 搜索类型：0-综合结果，1-大淘客商品，2-联盟商品 */
     private Integer type = 0;
     /*** 请求的页码，默认参数1 */
-    private Long pageId = 1L;
+    private String pageId = "1";
     /*** 每页条数，默认为20，最大值100 */
-    private Long pageSize = 10L;
+    private String pageSize = "10";
     /*** 关键词搜索 */
     private String keyWords;
     /*** 是否天猫商品：1-天猫商品，0-所有商品，不填默认为0 */
@@ -32,7 +32,7 @@ public class ListSuperGoodsReq extends DtkBaseReq {
     /*** 淘客佣金比率下限(2021/1/15新增字段) */
     private String startTkRate;
     /*** 是否有券，1为有券，默认为全部(2021/1/15新增字段) */
-    private String hasCoupon;
+    private Integer hasCoupon;
     /*** 活动id，多个使用,分隔符。示例1,2,3（12/7新增字段） */
     private String activityId;
     /*** 商品是否已经验货，0-否；1-是（1/26新增字段） */

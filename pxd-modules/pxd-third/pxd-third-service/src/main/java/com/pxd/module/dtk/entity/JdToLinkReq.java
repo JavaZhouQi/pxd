@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class JdToLinkReq extends DtkBaseReq {
+
     /*** 推客的联盟ID */
     private String unionId;
     /*** 推广物料url，例如活动链接、商品链接等；不支持仅传入skuid */
@@ -20,4 +21,5 @@ public class JdToLinkReq extends DtkBaseReq {
     private String chainType;
     /*** 礼金批次号 */
     private String giftCouponKey;
+
 }

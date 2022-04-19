@@ -12,9 +12,9 @@ public class JdGoodsSearchReq extends DtkBaseReq {
     /*** 三级类目id */
     private String cid3;
     /*** 页码 */
-    private Long pageId = 1L;
+    private String pageId = "1";
     /*** 每页数量，单页数最大30，默认20 */
-    private Long pageSize = 30L;
+    private String pageSize = "30";
     /*** skuid集合(一次最多支持查询100个sku)，多个使用“,”分隔符 */
     private String skuIds;
     /*** 关键词，字数同京东商品名称一致，目前未限制 */
@@ -34,7 +34,7 @@ public class JdGoodsSearchReq extends DtkBaseReq {
     /*** asc：升序；desc：降序。默认降序 */
     private String sort;
     /*** 是否是优惠券商品，1：有优惠券，0：无优惠券 */
-    private String isCoupon;
+    private Integer isCoupon;
     /*** 拼购价格区间开始 */
     private String pingouPriceStart;
     /*** 拼购价格区间结束 */
