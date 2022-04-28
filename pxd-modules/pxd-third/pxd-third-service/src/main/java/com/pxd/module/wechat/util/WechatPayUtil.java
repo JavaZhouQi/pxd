@@ -38,13 +38,12 @@ import java.security.PrivateKey;
 import java.util.Objects;
 
 @Slf4j
-@Component
+//@Component
 public class WechatPayUtil {
 
     private static WechatPayProperties wechatPayProperties;
     private static CloseableHttpClient httpClient;
 
-    @Autowired
     public WechatPayUtil(WechatPayProperties wechatPayProperties) {
         WechatPayUtil.wechatPayProperties = wechatPayProperties;
         try {

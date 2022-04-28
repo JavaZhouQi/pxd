@@ -1,0 +1,3 @@
+nacos:
+  host: 192.168.3.9:8848
+  namespace: public

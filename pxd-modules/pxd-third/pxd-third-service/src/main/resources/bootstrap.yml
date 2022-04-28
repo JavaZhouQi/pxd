@@ -8,7 +8,7 @@ dubbo:
     # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
     port: -1
   registry:
-    address: nacos://127.0.0.1:8848
+    address: nacos://192.168.3.9:8848
   scan:
     # dubbo 服务扫描基准包
     base-packages: com.pxd.dubbo.service
@@ -21,6 +21,28 @@ spring:
     name: pxd-three
   profiles:
     active: dev
+  cloud:
+    nacos:
+      discovery:
+        metadata:
+          management:
+            context-path: ${server.servlet.context-path}/actuator
+        server-addr: 192.168.3.9:8848
+        #nacos的命名空间ID，默认是public
+        namespace: ${nacos.namespace}
+      config:
+        server-addr: ${nacos.host}
+        namespace: ${nacos.namespace}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        #指定共享配置，且支持动态刷新
+#        extension-configs:
+#          - data-id: common.yaml
+#            group: DEFAULT_GROUP
+#            refresh: false
+#          - data-id: redis.yaml
+#            group: DEFAULT_GROUP
+#            refresh: false
 tencent:
   im:
     url: https://console.tim.qq.com/
@@ -28,3 +50,5 @@ tencent:
     administrator-user-id: pixiaodan
     key: fb15378736bb97b2ac19f19b053da4a7dca795460876d876201aea6c5175292f
     expire: 86400
+redis:
+  host: 192.168.3.9

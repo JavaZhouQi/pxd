@@ -23,9 +23,9 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.17.0</version>
+            <groupId>com.pxd</groupId>
+            <artifactId>pxd-common-cache</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.github.tencentyun</groupId>
@@ -46,6 +46,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.8</version>
                 <executions>
                     <execution>
                         <goals>

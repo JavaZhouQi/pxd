@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("redis")
 public class RedisProperties {
 
-    private String host = "127.0.0.1";
+    private String host = "192.168.3.9";
 
     private String post = "6379";
 
-    private String password;
+    private String password = "Qiqi1996";
 
     private int database = 0;
 

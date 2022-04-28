@@ -11,15 +11,15 @@ spring:
         metadata:
           management:
             context-path: ${server.servlet.context-path}/actuator
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.3.9:8848
         #nacos的命名空间ID，默认是public
         namespace: ${nacos.namespace}
-    #      config:
-    #        server-addr: ${nacos.host}
-    #        namespace: ${nacos.namespace}
-    #        group: DEFAULT_GROUP
-    #        file-extension: yaml
-    #        #指定共享配置，且支持动态刷新
+      config:
+        server-addr: ${nacos.host}
+        namespace: ${nacos.namespace}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        #指定共享配置，且支持动态刷新
     #        extension-configs:
     #          - data-id: common.yaml
     #            group: DEFAULT_GROUP
@@ -35,11 +35,19 @@ spring:
             - Path=/admin/**
           filters:
             - StripPrefix=1
+        - id: pxd-admin
+          uri: lb://pxd-three
+          predicates:
+            - Path=/three/**
+          filters:
+            - StripPrefix=1
 pxd:
   swagger: #聚合文档配置
     routes:
       - name: 后台管理
         location: /admin
+      - name: 三方管理
+        location: /three
   urls: #无需认证的URL
     - /*/swagger-resources/**
     - /*/webjars/**
